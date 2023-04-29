@@ -350,7 +350,7 @@ exports.postUserBook = (req, res) => {
         .then(async () => {
             req.flash(
                 'success',
-                `অভিনন্দন! আপনার "'${book_name}'" বইটি সফল ভাবে পোষ্ট করা হয়েছে।`
+                `অভিনন্দন! আপনার '${book_name}' বইটি সফল ভাবে পোষ্ট করা হয়েছে।`
             );
 
             res.redirect('/all-books');
@@ -549,7 +549,7 @@ exports.deleteUser = async (req, res) => {
             'success',
             `User '${userName}' has been deleted successfully!`
         );
-        res.redirect('/users');
+        res.redirect('/all-users');
     } catch (error) {
         console.log(error);
     }
