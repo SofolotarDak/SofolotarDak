@@ -164,7 +164,7 @@ exports.postRegister = (req, res) => {
                     // Creating Mail information
                     let mailInfo = {
                         from: '"Sofolotar Dak" <sofolotardak@gmail.com>',
-                        to: 'sahreyararafat@gmail.com',
+                        to: 'mikat2023@gmail.com',
                         subject: `নতুন অ্যাকাউন্ট তৈরি হয়েছে!`,
                         html: `<p>সফলতার ডাক -এ নতুন অ্যাকাউন্ট খুলেছেন <b>" ${username} "</b>.<br>
                         তার ইমেইল ঠিকানা:<b> ${email}</b><br>
@@ -287,7 +287,7 @@ exports.postUserStory = (req, res) => {
             // Creating Mail information
             let mailInfo = {
                 from: '"Sofolotar Dak" <sofolotardak@gmail.com>',
-                to: 'sahreyararafat@gmail.com',
+                to: 'mikat2023@gmail.com',
                 subject: `নতুন লিখনি পোষ্ট করা হয়েছে!`,
                 html: `<p>সফলতার ডাকে নতুন লিখনি পোষ্ট করা হয়েছে।</p><p>লেখকের নাম: <b>${writter_name}</b></p><p>লিখনির শিরোনাম: <b>${story_title}</b></p><p>পোস্ট করেছেন: <b>${posted_by}</b></p><p>অনুমোদনের জন্য অপেক্ষারত লিখনি।</p>`,
             };
