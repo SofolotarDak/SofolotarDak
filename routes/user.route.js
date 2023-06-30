@@ -29,6 +29,7 @@ const {
     postResetPasswordCode,
     postUserPasswordReset,
     getLikhoni,
+    getSiteMap,
 } = require('../controllers/user.controller');
 const { loginValidator } = require('../validator/user.login.validator');
 const { registerValidator } = require('../validator/user.registar.validator');
@@ -49,6 +50,8 @@ const {
 
 // Get Routes
 router.get('/', getIndex);
+
+router.get('/sitemap', getSiteMap);
 
 router.get('/likhoni', getLikhoni);
 
