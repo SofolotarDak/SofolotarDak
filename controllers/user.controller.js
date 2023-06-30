@@ -47,7 +47,8 @@ exports.getIndex = (req, res) => {
 };
 
 exports.getSiteMap = (req, res) => {
-    res.render('sitemap.xml');
+    res.set('Content-Type', 'application/xml');
+    res.render('sitemap');
 };
 
 exports.getLikhoni = (req, res) => {

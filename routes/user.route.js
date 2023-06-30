@@ -51,8 +51,6 @@ const {
 // Get Routes
 router.get('/', getIndex);
 
-router.get('/sitemap', getSiteMap);
-
 router.get('/likhoni', getLikhoni);
 
 router.get('/all-books', getAllBooks);

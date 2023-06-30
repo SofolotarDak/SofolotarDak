@@ -9,6 +9,7 @@ const flash = require('connect-flash');
 
 // Internal Inputs
 const userRouter = require('./routes/user.route');
+const sitemapRouter = require('./routes/sitemap.route');
 const {
     bindUserWithRequest,
 } = require('./middleware/bindUserWithRequest.middleware');
@@ -58,6 +59,7 @@ app.use(flash());
 app.use(bindUserWithRequest());
 app.use(setLocals());
 app.use(userRouter);
+app.use(sitemapRouter);
 app.use((req, res) => {
     res.render('crush');
 });
