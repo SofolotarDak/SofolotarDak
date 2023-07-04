@@ -9,7 +9,11 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const fileExt = path.extname(file.originalname);
-        const fileName = `${file.originalname.replace(fileExt, '').toLowerCase().split(' ').join('-')}-${Date.now()}`;
+        const fileName = `${file.originalname
+            .replace(fileExt, '')
+            .toLowerCase()
+            .split(' ')
+            .join('-')}-${Date.now()}`;
         cb(null, fileName + fileExt);
     },
 });
@@ -18,16 +22,32 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage,
     limits: {
-        fileSize: 1000000, // 1MB
+        fileSize: 2 * 1024 * 1024, // 2MB
     },
     fileFilter: (req, file, cb) => {
         if (file.fieldname === 'storyimage') {
-            const fileExt = path.extname(file.originalname);
+            try {
+                const fileExt = path.extname(file.originalname);
+                const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
+                const maxSize = 2 * 1024 * 1024; // 1MB
 
-            if (fileExt === '.png' || fileExt === '.jpg') {
-                cb(null, true);
-            } else {
-                cb(null, false);
+                if (
+                    allowedExtensions.includes(fileExt) &&
+                    file.size <= maxSize
+                ) {
+                    cb(null, true);
+                } else {
+                    throw new Error(
+                        'অবৈধ ফাইল. শুধুমাত্র PNG, JPG, JPEG, এবং GIF এক্সটেনশন যুক্ত ছবি আপলোড করতে পারবেন এবং এর সাইজ সর্বোচ্চ 2MB পর্যন্ত হতে হবে।'
+                    );
+                }
+            } catch (error) {
+                cb(
+                    new Error(
+                        'ছবি আপলোড করার সময় অভ্যন্তরীণ ত্রুটি ঘটেছে, আবার চেষ্টা করুন।' +
+                            error.message
+                    )
+                );
             }
         }
     },
