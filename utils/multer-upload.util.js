@@ -22,14 +22,14 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage,
     limits: {
-        fileSize: 2 * 1024 * 1024, // 2MB
+        fileSize: 1000000, // 1MB
     },
     fileFilter: (req, file, cb) => {
         if (file.fieldname === 'storyimage') {
             try {
                 const fileExt = path.extname(file.originalname);
-                const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
-                const maxSize = 2 * 1024 * 1024; // 1MB
+                const allowedExtensions = ['.png', '.jpg'];
+                const maxSize = 1 * 1024 * 1024; // 1MB
 
                 if (
                     allowedExtensions.includes(fileExt) &&
@@ -38,16 +38,11 @@ const upload = multer({
                     cb(null, true);
                 } else {
                     throw new Error(
-                        'অবৈধ ফাইল. শুধুমাত্র PNG, JPG, JPEG, এবং GIF এক্সটেনশন যুক্ত ছবি আপলোড করতে পারবেন এবং এর সাইজ সর্বোচ্চ 2MB পর্যন্ত হতে হবে।'
+                        'অবৈধ ফাইল. শুধুমাত্র PNG, JPG, JPEG, এবং GIF এক্সটেনশন যুক্ত ছবি আপলোড করতে পারবেন এবং এর সাইজ সর্বোচ্চ 1MB পর্যন্ত হতে হবে।'
                     );
                 }
             } catch (error) {
-                cb(
-                    new Error(
-                        'ছবি আপলোড করার সময় অভ্যন্তরীণ ত্রুটি ঘটেছে, আবার চেষ্টা করুন।' +
-                            error.message
-                    )
-                );
+                cb(error);
             }
         }
     },
